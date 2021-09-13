@@ -5,26 +5,34 @@ const loadProducts = () => {
     .then((data) => showProducts(data));
 };
 loadProducts();
+
 // show all product in UI 
 const showProducts = (products) => {
-  const allProducts = products.map((pd) => pd);
+  const allProducts = products.map((product) => product);
   for (const product of allProducts) {
     const image = product.image;
+    //by destructuring product object
+    const {rate,count}= product.rating
+      
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
       <div>
-    <img class="product-image" src=${image}></img>
+    <img style="max-height: 200px" class="product-image" src=${image}></img>
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
       <h2>Price: $ ${product.price}</h2>
+      <h5>Total-Rating : ${count}   </h5>
+      <h6>Average-rating: ${rate}</h6>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button id="details-btn" onclick='showDetails(${product.price},${rate})' class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
