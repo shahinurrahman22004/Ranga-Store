@@ -1,6 +1,7 @@
 body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
+  background-color: #eee;
 }
 .search-field {
   border: none;
@@ -83,4 +84,12 @@ body {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+
+
+/* jd file style  */
+
+.single-product:hover  {
+  background-color: #eee;
 }

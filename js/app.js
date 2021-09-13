@@ -32,22 +32,17 @@ const showProducts = (products) => {
   }
 };
 
+// show modal 
 const showDetails=(price,rating)=>{
-// console.log(price,rating)
 
-// modal area  
-  document.getElementById("modal-body").innerHTML = `
+document.getElementById("modal-body").innerHTML = `
   
      <div class='p-3'>
-      <p>Rating: ${Array.from(Array(parseInt(rating)).keys()).map(
-        (r) => '<i class="bi bi-star-fill text-warning"></i>'
-      )}</p>
+      <p>Rating: ${rating}</p>
       <h2>Price: $ ${price}</h2>
      </div>
-    `;
-
+`;
 }
-
 
 let count = 0;
 const addToCart = (id, price) => {
@@ -66,23 +61,20 @@ const getInputValue = (id) => {
   return converted;
 };
 
-// main price update
+// main price update 
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
    const convertPrice = parseFloat(value);
-
   const total = convertedOldPrice + convertPrice;
-  // console.log(total, typeof total)
-  //  document.getElementById(id).innerText = Math.round(total);
    document.getElementById(id).innerText = total.toFixed(2);
 };
 
-// set innerText function
+// set innerText 
 const setInnerText = (id, value) => {
   document.getElementById(id).innerText = Math.round(value);
 };
 
-// update delivery charge and total Tax
+// delivery charge and total Tax update
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
   if (priceConverted > 200) {
@@ -99,19 +91,11 @@ const updateTaxAndCharge = () => {
   }
 };
 
-//grandTotal update function
+//Total area update 
 const updateTotal = () => {
-
-// console.log(
-//   getInputValue("price") ,
-//     getInputValue("delivery-charge") ,
-//     getInputValue("total-tax")
-// );
-
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
 
-    // console.log(grandTotal);
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
